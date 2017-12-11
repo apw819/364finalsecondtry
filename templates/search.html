@@ -1,0 +1,7 @@
+<h2>Search for a Twitter user below</h2>
+
+<form method="POST" action="/results">
+	{{ form.hidden_tag() }}
+	{{ form.twitter_handle.label }} {{ form.twitter_handle() }}
+	{{ form.submit.label }}{{ form.submit() }}
+</form>

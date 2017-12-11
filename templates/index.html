@@ -1,19 +1,36 @@
-<div class="page-header">
-    <h1>{% if num_tweets %}{{ num_tweets }}{% else %}0{% endif %} possible tweets saved. </h1>
-    <p><a href="{{ url_for('see_all_tweets') }}">See all tweets.</a></p>
-    <p><a href="{{ url_for('see_all_users') }}">See all twitter users.</a></p>
-</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<form method="POST">
-	{{ form.hidden_tag() }}
-	{{ form.text.label }} {{ form.text() }}
-	{{ form.username.label }} {{ form.username() }}
-	{{ form.email.label }} {{ form.email() }}
-	{{ form.submit() }}
-</form>
+<h1>Hello, {{user.email}}</h1>
+<a href="/search">Click here for to search a Twitter handle and see who their most recent followers are!</a>
+<br>
+</br>
+<!--<img src = "/static/Twitter2.jpg"/>-->
+<h1>Upload new Profile Picture</h1>
+<h2>Image can be in png format only </h2>
+    <form method=post enctype=multipart/form-data action="/upload_file">
+      <p><input type=file name=file>
+         <input type=submit value=Upload>
+    </form>
 
-<div>
-{% for message in get_flashed_messages() %}
-{{ message }}
-{% endfor %}
-</div>
+<button onclick="existsProfPic()">Check whether profile picture already exists</button>
+
+<script>
+function existsProfPic () {
+var request = $.ajax({
+  method: "GET",
+  url: "/get_profile_picture",
+  dataType: "json"
+});
+
+request.done(function( data ) {
+  if (data.hasPic) {
+  	alert("You have already uploaded a profile pic!")
+  }
+  else {
+  	alert("No profile picture for you yet!")
+  }
+});
+ 
+}
+
+</script>

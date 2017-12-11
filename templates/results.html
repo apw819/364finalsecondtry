@@ -1,0 +1,12 @@
+<h2>New Followers for {{searchTerm}}</h2>
+
+<ol>
+{% for new_fol in data %}
+<li>
+	<p><b>{{new_fol["name"]}}<b></p>
+	<p><a href="/user/{{new_fol['screen_name']}}"><em>@{{new_fol["screen_name"]}}</em></a></p>
+	<p>User description: {{new_fol["description"]}}</p>
+	<p>From: {{new_fol["location"]}}</p>
+</li>
+{% endfor %}
+</ol>
